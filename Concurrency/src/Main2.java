@@ -1,13 +1,13 @@
 public class Main2 {
 	
-	private final static int LOOPS = -1;
+	private final static int LOOPS = 2;
 	
 	class Reader extends Thread {
 		private int id;
-		private SyncedBoundedBuffer2 buffer;
+		private SyncedBoundedIntBuffer2 buffer;
 		private int counter;
 		
-		Reader(int id, SyncedBoundedBuffer2 buffer) {
+		Reader(int id, SyncedBoundedIntBuffer2 buffer) {
 			this.id = id;
 			this.buffer = buffer;
 			this.counter = 0;
@@ -28,10 +28,10 @@ public class Main2 {
 	
 	class Writer extends Thread {
 		private int id;
-		private SyncedBoundedBuffer2 buffer;
+		private SyncedBoundedIntBuffer2 buffer;
 		private int counter;
 		
-		Writer(int id, SyncedBoundedBuffer2 buffer) {
+		Writer(int id, SyncedBoundedIntBuffer2 buffer) {
 			this.id = id;
 			this.buffer = buffer;
 			this.counter = 0;
@@ -51,7 +51,7 @@ public class Main2 {
 	}
 
 	public Main2() {
-		SyncedBoundedBuffer2 buffer = new SyncedBoundedBuffer2(2);
+		SyncedBoundedIntBuffer2 buffer = new SyncedBoundedIntBuffer2(2);
 		Reader reader1 = new Reader(1, buffer);
 		Reader reader2 = new Reader(2, buffer);
 		Writer writer1 = new Writer(3, buffer);

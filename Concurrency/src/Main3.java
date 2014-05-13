@@ -1,6 +1,6 @@
 public class Main3 {
 	
-	private final double LOOPS = -1;
+	private final double LOOPS = 2;
 	
 	class Reader extends Thread {
 		private int id;
@@ -51,11 +51,11 @@ public class Main3 {
 	}
 
 	public Main3() {
-		SyncedBoundedIntBuffer3_2 buffer = new SyncedBoundedIntBuffer3_2(2);
+		SyncedBoundedIntBuffer3 buffer = new SyncedBoundedIntBuffer3(2);
 		Writer writer1 = new Writer(1, buffer);
-		Writer writer2 = new Writer(1, buffer);
-		Reader reader1 = new Reader(1, buffer);
-		Reader reader2 = new Reader(1, buffer);
+		Writer writer2 = new Writer(2, buffer);
+		Reader reader1 = new Reader(3, buffer);
+		Reader reader2 = new Reader(4, buffer);
 		writer1.start();
 		writer2.start();
 		reader1.start();
