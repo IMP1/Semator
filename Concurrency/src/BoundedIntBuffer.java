@@ -1,24 +1,44 @@
 public class BoundedIntBuffer {
 
+	/** data contained within buffer */
     protected final int[] contents;
-    protected int readHead, writeHead, count;
+    /** position to read from */
+    protected int readHead;
+    /** position to write to */
+    protected int writeHead;
+    /** amount of data currently in buffer */
+    protected int count;
     
+    /**
+     * Creates a new bounded buffer with cap on number of items.
+     * @param size the size to cap at. 
+     */
     public BoundedIntBuffer(int size) {
         contents = new int[size];
-        // readHead and emptyHead both = -1 means empty
         readHead = 0;
         writeHead = 0;
         count = 0; // count only used for isEmpty and isFull
     }
     
+    /**
+     * @return whether the buffer is full.
+     */
     public boolean isFull() {
     	return count == contents.length; 
     }
     
+    /**
+     * @return whether the buffer is empty.
+     */
     public boolean isEmpty() {
     	return count == 0; 
     }
     
+    /**
+     * Writes data to the buffer if it is not full.
+     * @param data the data to write to the buffer.
+     * @throws Exception if buffer is full, throws exception. This should be handled by subclasses.
+     */
     public void write(int data) throws Exception {
         if (isFull()) {
             throw new Exception("Buffer Overflow!");
@@ -29,6 +49,11 @@ public class BoundedIntBuffer {
         }
     }
     
+    /**
+     * Reads data to the buffer if it is not empty.
+     * @return the data read
+     * @throws Exception if buffer is empty, throws exception. This should be handled by subclasses.
+     */
     public int read() throws Exception {
         if (isEmpty()) {
         	throw new Exception("Buffer Underflow!");

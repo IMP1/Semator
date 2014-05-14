@@ -7,13 +7,19 @@ public class GeneralSemaphore {
 	/** object to use as monitor to wait/notify on. */
 	protected final Object monitor;
 	
+	/**
+	 * Creates a new semaphore with a limited number of permits.
+	 * @param permits the number of permits to allow.
+	 */
 	public GeneralSemaphore(int permits) {
 		this(permits, permits);
 	}
 	
 	/**
-	 * Creates a new semaphore.
+	 * Creates a new semaphore with a limited number of permits, and an initial
+	 * number of permits.
 	 * @param permits the amount of permits allocatable.
+	 * @param initialValue the amount of permits to start with.
 	 */
 	public GeneralSemaphore(int permits, int initialValue) {
 		if (permits <= 0) {
