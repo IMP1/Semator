@@ -1,4 +1,4 @@
-public class SyncedBoundedIntBuffer2 extends BoundedIntBuffer {
+public class SyncedBoundedIntBuffer extends BoundedIntBuffer {
 	
 	/** Amount of permits for producers is equal to the amount of space left. */
 	GeneralSemaphore fullLock;
@@ -7,7 +7,7 @@ public class SyncedBoundedIntBuffer2 extends BoundedIntBuffer {
 	/** Whether the buffer is being accessed. */
 	BinarySemaphore mutex;
 
-	public SyncedBoundedIntBuffer2(int size) {
+	public SyncedBoundedIntBuffer(int size) {
 		super(size);
 		fullLock = new GeneralSemaphore(size);
 		emptyLock = new GeneralSemaphore(size, 0); // starts empty because nothing to read yet.
