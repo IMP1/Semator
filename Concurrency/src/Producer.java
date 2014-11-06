@@ -24,7 +24,7 @@ public class Producer extends Thread {
 	}
 	
 	public void run() {
-		while (loops == -1 || counter != loops) {
+		while (loops == -1 || counter < loops) {
 			try {
 				buffer.write(num);
 				counter ++;
