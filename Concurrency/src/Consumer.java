@@ -19,7 +19,7 @@ public class Consumer extends Thread {
 	}
 	
 	public void run() {
-		while (loops == -1 || counter != loops) {
+		while (loops == -1 || counter < loops) {
 			try {
 				System.out.println(buffer.read());
 				counter ++;
