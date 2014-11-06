@@ -1,9 +1,9 @@
-public class Main3 {
+public class Main2 {
 	
 	private final static int LOOPS = -1; // infinite looping.
 
-	public Main3() {
-		SyncedBoundedIntBuffer3 buffer = new SyncedBoundedIntBuffer3(2);
+	public Main2() {
+		SyncedBoundedIntBuffer2 buffer = new SyncedBoundedIntBuffer2(2);
 		Producer writer1 = new Producer(buffer, 1, LOOPS);
 		Producer writer2 = new Producer(buffer, 2, LOOPS);
 		Consumer reader1 = new Consumer(buffer, LOOPS);
@@ -15,7 +15,7 @@ public class Main3 {
 	}
 	
 	public static void main(String[] args) {
-		new Main3();
+		new Main2();
 	}
 
 }
