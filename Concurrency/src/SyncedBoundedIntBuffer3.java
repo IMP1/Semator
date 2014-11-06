@@ -1,9 +1,9 @@
-public class SyncedBoundedIntBuffer3 extends BoundedIntBuffer {
+public class SyncedBoundedIntBuffer2 extends BoundedIntBuffer {
 
 	Monitor monitor;
 	int threadsWaiting;
 	
-	public SyncedBoundedIntBuffer3(int size) {
+	public SyncedBoundedIntBuffer2(int size) {
 		super(size);
 		monitor = new Monitor();
 		threadsWaiting = 0;
