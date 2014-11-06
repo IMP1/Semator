@@ -25,11 +25,11 @@ The classes are all fairly self-contained, and hopefully clear, but I've written
 * The [Binary Semaphore](https://github.com/IMP1/Semator/blob/master/Concurrency/src/BinarySemaphore.java).
 	* Has a maximum of one permit it can give out, and may start with 0 initially available, if you want.
 	* Otherwise, same as a general semaphore.
-* The [Semaphore-Synchronised Bounded Buffer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/SyncedBoundedIntBuffer2.java).
+* The [Semaphore-Synchronised Bounded Buffer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/SyncedBoundedIntBuffer.java).
 	* This uses two counting semaphores. As one goes down, the other goes up. 
 	* This is because the writers are taking from one, and the producers from another and, when something has been written there is one fewer space to write to (decrement the producer counting semaphore), and one more space to write from (increment the consumer counting semaphore).
 	* It also uses a binary semaphore to protect access to writing and reading, so only one thread can perform any action on the buffer itself at any time.
-* The [Main Class](https://github.com/IMP1/Semator/blob/master/Concurrency/src/Main2.java).
+* The [Main Class](https://github.com/IMP1/Semator/blob/master/Concurrency/src/Main.java).
 	* This simply creates two producer instances, and two consumer instances, passing them an instance of the Semaphore-Synchronised Bounded Buffer, and then starts them.
 
 ## Monitors out of Semaphores
@@ -38,10 +38,10 @@ The classes are all fairly self-contained, and hopefully clear, but I've written
 	* Java Monitors handle their acquisition and release behind the scenes when a thread enters and leaves a synchronised block or method. Because I can't do this, I have explicit `acquire` and `release` methods that are called at the beginning and end of "synchronised" code blocks.
 	* The Monitor `_wait` call also calls `release` before making the thread wait (see the the last point of Monitor-Synchronised Bounded Buffer) and has to call `acquire` afterwards to reacquire the lock before continuing within the "synchronised" block.
 	* `_notify` and `_notifyAll` are fairly straightforward: they release one (or all) the waiting threads.
-* The [Monitor-Synchronised Bounded Buffer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/SyncedBoundedIntBuffer3.java).
+* The [Monitor-Synchronised Bounded Buffer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/SyncedBoundedIntBuffer2.java).
 	* The monitor usage in this is similar to that in General Semaphore.
 	* The monitor is used at the beginning and end of each of the methods, to ensure that only one thread is accessing the 'critical section' of the code.
 	* If the thread cannot perform its task (e.g. trying to write to a full buffer) then it makes itself wait. This means all producers trying to write to a full buffer, or all consumers trying to read from an empty buffer, will end up waiting.
 	* When a thread starts waiting, it gives up the lock so another thread can enter the 'critical section'. This is because the thread is waiting, and so 
-* The [Main Class](https://github.com/IMP1/Semator/blob/master/Concurrency/src/Main3.java).
+* The [Main Class](https://github.com/IMP1/Semator/blob/master/Concurrency/src/Main2.java).
 	* This simply creates two producer instances, and two consumer instances, passing them an instance of the Monitor-Synchronised Bounded Buffer, and then starts them.
