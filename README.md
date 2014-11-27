@@ -10,7 +10,7 @@ The classes are all fairly self-contained, and hopefully clear, but I've written
 
 ## Groundwork
 * The [Bounded Integer Buffer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/BoundedIntBuffer.java).
-	* This can be of any size, but cannot be infinite in size.
+	* This can be of any size, but its size is static.
 	* This more-or-less implements a circular array and has a `readHead` and a `writeHead` to keep track of where to be reading and writing from, respectively.
 * The [Producer](https://github.com/IMP1/Semator/blob/master/Concurrency/src/Producer.java).
 	* This just writes to a bounded buffer. You can set an amount of times for it to do it, or have it looping forever.
