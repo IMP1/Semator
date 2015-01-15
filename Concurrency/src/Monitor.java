@@ -29,11 +29,11 @@ public class Monitor {
 	 * and finally notifying.
 	 */
 	public void _wait() {
-        threadsWaiting ++;
-        release();
-        waiting.acquire();
-        acquire();
-        _notify();
+	        threadsWaiting ++;
+	        release();
+	        waiting.acquire();
+	        acquire();
+	        _notify();
 	}
 	
 	/**
