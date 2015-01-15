@@ -1,12 +1,10 @@
 public class SyncedBoundedIntBuffer2 extends BoundedIntBuffer {
 
 	Monitor monitor;
-	int threadsWaiting;
 	
 	public SyncedBoundedIntBuffer2(int size) {
 		super(size);
 		monitor = new Monitor();
-		threadsWaiting = 0;
 	}
 	
 	@Override
@@ -23,9 +21,9 @@ public class SyncedBoundedIntBuffer2 extends BoundedIntBuffer {
 	@Override
 	public int read() throws Exception {
 		monitor.acquire();
-        while (isEmpty()) {
-            monitor._wait();
-        }
+	        while (isEmpty()) {
+	            monitor._wait();
+	        }
 		int data = super.read();
 		monitor._notifyAll();
 		monitor.release();
